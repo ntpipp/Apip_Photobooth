@@ -1,0 +1,164 @@
+:root {
+  --background-gradient: linear-gradient(to right, rgb(102, 102, 102), #3f3f3f);
+  --button-padding: 10px 15px;
+  --button-margin: 10px;
+  --border-radius: 8px;
+  --gallery-background: rgba(255, 255, 255, 0.8);
+}
+
+body {
+    background-color: rgb(255, 255, 255); /* Latar belakang semi-transparan untuk kontainer */
+    background-size: cover; /* Mengatur gambar agar menutupi seluruh latar belakang */
+    background-position: center; /* Mengatur posisi gambar di tengah */
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#photobooth-container {
+    background: rgba(255, 182, 193, 0.5);
+    padding: 20px; /* Ruang di dalam kontainer */
+    border-radius: 10px; /* Sudut melengkung untuk kontainer */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Bayangan untuk kontainer */
+}
+
+#video {
+  width: 50%;
+  height: auto;
+  border: 5px solid #fff;
+  border-radius: var(--border-radius);
+  transform: scale(-1, 1);
+}
+
+#canvas {
+  display: none;
+}
+
+#container {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap; /* Membuat kontainer fleksibel */
+}
+
+#button-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsif */
+  width: 100%;
+}
+
+#countdown {
+  font-size: 3vw; /* Menggunakan vw untuk ukuran font responsif */
+  position: fixed;
+  top: 33%;
+  left: 27%; /* Memusatkan secara horizontal */
+  transform: translateX(-50%); /* Memusatkan secara horizontal */
+}
+
+.kembali-button {
+  transition: transform 0.3s ease; /* Transisi untuk efek transformasi */
+}
+
+.kembali-button:hover {
+  transform: scale(1.1); /* Memperbesar gambar saat hover */
+}
+
+button {
+  margin: var(--button-margin);
+  margin-top: 50px;
+  padding: var(--button-padding);
+  font-size: 1.2em; /* Ukuran font yang lebih responsif */
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Transisi untuk efek hover */
+
+}
+
+button:hover {
+  background-color: #9d9d9d;
+  transform: scale(1.05); /* Efek zoom saat hover */
+  }
+
+.error-message {
+    background-color: #f8d7da; /* Warna latar belakang merah muda */
+    color: #721c24; /* Warna teks merah gelap */
+    border: 1px solid #f5c6cb; /* Border merah muda */
+    border-radius: 5px; /* Sudut membulat */
+    padding: 15px; /* Ruang dalam */
+    margin: 20px 0; /* Margin atas dan bawah */
+    font-family: Arial, sans-serif; /* Font */
+    text-align: left; /* Teks rata kiri */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Bayangan */
+    display: flex; /* Menggunakan flexbox untuk tata letak */
+    align-items: center; /* Rata tengah secara vertikal */
+}
+
+.error-text {
+    flex-grow: 1; /* Membuat teks mengisi ruang yang tersedia */
+}
+
+h2 {
+  font-size: 48px;
+  margin: 0;
+}
+
+h2 span {
+  font-weight: bold;
+}
+
+p {
+  margin: 15px 0;
+}
+
+.polaroid {
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 10px;
+  padding: 10px;
+  width: 200px; /* Atur lebar sesuai kebutuhan */
+  text-align: center;
+}
+.polaroid img {
+  width: 100%; /* Gambar mengisi lebar polaroid */
+  height: auto;
+}
+
+#photo-gallery {
+  display: none;
+  flex-direction: column;
+  margin-left: 5%; /* Menggunakan persentase untuk responsivitas */
+  border: 5px solid #fff;
+  background-color: var(--gallery-background);
+  padding: 10px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+#photo-gallery img {
+  width: 100%; /* Menggunakan 100% untuk responsivitas */
+  max-width: 115px; /* Lebar maksimum untuk gambar */
+  height: auto;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: var(--border-radius);
+}
+
+/* Media Queries untuk responsivitas */
+@media (max-width: 768px) {
+  #video {
+    width: 80%; /* Lebar video lebih besar pada layar kecil */
+  }
+
+  #countdown {
+    font-size: 5vw; /* Ukuran font lebih kecil pada layar kecil */
+  }
+
+  button {
+    font-size: 1em; /* Ukuran font tombol lebih kecil pada layar kecil */
+  }
+}
