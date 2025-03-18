@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="aset/logo.png">
+    <title>Photobooth</title>
+    <style>
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #8080807e; /* Warna latar belakang yang lebih lembut */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+header {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+nav {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(0, 0, 0, 0.5));
+    padding: 25px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Bayangan lebih halus */
+    display: flex; /* Menggunakan flexbox untuk tata letak */
+    align-items: center; /* Rata tengah secara vertikal */
+    justify-content: center; /* Rata tengah secara horizontal */
+    transition: box-shadow 0.3s ease; /* Transisi halus untuk bayangan */
+}
+
+nav:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); /* Bayangan lebih dalam saat hover */
+}
+
+.profile-pic {
+    width: 50px; /* Ukuran gambar profil */
+    height: 50px; /* Ukuran gambar profil */
+    border-radius: 50%; /* Membuat gambar menjadi bulat */
+    margin-right: 15px; /* Jarak antara gambar dan tautan */
+}
+
+nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #333; /* Warna teks yang lebih gelap untuk kontras */
+    font-weight: bold;
+    transition: color 0.3s ease, transform 0.2s ease; /* Transisi untuk efek hover */
+}
+
+nav a:hover {
+    color: #2c2c2c; /* Warna teks yang lebih gelap */
+    transform: scale(1.05); /* Efek zoom saat hover */
+}
+
+.container {
+    text-align: center;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(0, 0, 0, 0.5));
+    border-radius: 20px;
+    padding: 50px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease; /* Transisi halus untuk bayangan */
+}
+
+.container:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); /* Bayangan lebih dalam saat hover */
+}
+
+h1 {
+    font-size: 48px;
+    margin: 0;
+    color: #2c2c2c; /* Warna teks yang lebih gelap */
+}
+
+h1 span {
+    font-weight: bold;
+}
+
+p {
+    margin: 15px 0;
+    color: #000000; /* Warna teks yang lebih gelap */
+}
+
+.start-button {
+    display: inline-block;
+    background-color: #cecece; /* Warna latar belakang yang lebih lembut */
+    color: #2c2c2c; /* Warna teks yang lebih gelap */
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transisi untuk efek hover */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Bayangan untuk tombol */
+}
+
+.start-button:hover {
+    background-color: rgba(255, 255, 255, 0.6); /* Warna hijau lebih gelap saat hover */
+    transform: scale(1.05); /* Efek zoom saat hover */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Bayangan lebih dalam saat hover */
+}
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.8); /* Black w/ opacity */
+}
+
+.modal-content {
+    background: linear-gradient(145deg , rgb(255, 255, 255), rgb(0, 0, 0));
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Bayangan untuk modal */
+    transition: transform 0.3s ease; /* Transisi untuk efek 3D */
+}
+
+.modal-content:hover {
+    transform: scale(1.02); /* Efek zoom saat hover pada modal */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+footer {
+    position: absolute;
+    bottom: 20px;
+    text-align: center;
+}
+
+.start-continue {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.8); /* Warna hijau */
+    color: #2c2c2c; /* Warna teks yang lebih gelap */
+    padding: 12px 24px; /* Padding untuk tombol */
+    border: none; /* Tanpa border */
+    border-radius: 8px; /* Sudut membulat */
+    font-size: 16px; /* Ukuran font */
+    cursor: pointer; /* Pointer saat hover */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transisi untuk efek hover */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Bayangan untuk tombol */
+}
+
+.start-continue:hover {
+    background-color: rgba(255, 255, 255, 0.6); /* Warna hijau lebih gelap saat hover */
+    transform: scale(1.05); /* Efek zoom saat hover */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Bayangan lebih dalam saat hover */
+}
+
+.start-continue:focus {
+    outline: none; /* Menghilangkan outline saat fokus */
+}
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <img src="aset/logo.png" alt="Profile Picture" class="profile-pic">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="https://www.instagram.com/im.apip_/" target="_blank">Instagram</a>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <h1 class="title">Apip<span class="highlight"> Photobooth </span> 2025</h1>
+            <p class="slogan ">Capture the moment!</p>
+            <a href="#" class="start-button">START</a>
+        </div>
+    </main>
+    <footer>
+        <p>Made by <a href="https://www.instagram.com/im.apip_/"target="_blank">Muhammad Afif</a></p>
+        <p>© 2025 Copyright. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Modal Structure -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Welcome to the Photobooth!</h2>
+            <p>Are you ready to capture some amazing moments?</p>
+            <button class="start-continue">Continue!</button>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById("myModal");
+        const btn = document.querySelector('.start-button');
+        const span = document.getElementsByClassName("close")[0];
+        const startContinue = document.querySelector('.start-continue');
+
+        btn.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent default anchor behavior
+            modal.style.display = "block"; // Show the modal
+        });
+
+        span.addEventListener('click', () => {
+            modal.style.display = "none"; // Close the modal
+        });
+
+        startContinue.addEventListener('click', () => {
+            modal.style.display = "none"; // Close the modal
+            window.location.href = 'photo.html'; // Redirect to photo.html
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = "none"; // Close the modal if clicked outside
+            }
+        });
+    </script>
+</body>
+</html>

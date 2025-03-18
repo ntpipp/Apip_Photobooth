@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="aset/logo.png">
+    <link rel="stylesheet" href="style.css">
+    <title>Photo Booth</title>
+</head>
+
+<body>
+    <div id="error-message" class="error-message" style="display: none;">
+        <span class="error-text">Akses kamera diperlukan untuk menggunakan website ini. Silahkan coba lagi.</span>
+    </div>
+
+    <div id="photobooth-container">
+        <h2>Apip Photobooth ➣</h2>
+        <p>Photobooth Online Yuk!</p>
+
+        <div id="container">
+            <video id="video" autoplay></video>
+            <canvas id="canvas" style="display: none;"></canvas>
+            <div id="photo-gallery"></div>
+        </div>
+
+        <div id="countdown" style="font-size: 48px; color: #858585;"></div>
+
+        <div id="button-container">
+            <a href="index.html" id="backButton" style="text-decoration: none;">
+                <img src="aset/home.png" alt="Kembali Button" class="kembali-button" style="width: 50px; height: auto; margin-top: 40px; margin-bottom: 1px;">
+            </a>
+            
+            <button id="takePhoto">Ambil Foto</button>
+            <button id="savePhoto" style="display: none;">Simpan Foto</button>
+            <button id="retryPhoto" style="display: none;">Ulang</button>
+        </div>
+
+        <div id="filter-container">
+            <select id="filterSelect">
+                <option value="none">Tidak Ada Filter</option>
+                <option value="grayscale(100%)">Hitam Putih</option>
+                <option value="sepia(100%)">Sepia</option>
+                <option value="blur(5px)">Blur</option>
+                <option value="brightness(150%)">Cerah</option>
+            </select>
+        </div>
+
+        <div id="polaroid-container" style="display: none;"></div>
+        <div id="polaroid-gallery"></div>
+    </div>
+
+    <script src=" script.js"></script>
+</body>
+</html>
